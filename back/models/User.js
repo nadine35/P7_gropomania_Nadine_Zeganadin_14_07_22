@@ -7,7 +7,8 @@ const userSchema = mongoose.Schema({
     pseudo: { type: String, required: true },
     bio: { type: String },
     likes: { type: [String] },
-    picture: { type: String, default: "./uploads/profil/random-user.png" },
+    // picture: { type: String, default: "./uploads/profil/random-user.png" },
+    picture: { type: String, default: "./uploads/profil/contact.png" },
     isAdmin: { type: Boolean }
 },
     {

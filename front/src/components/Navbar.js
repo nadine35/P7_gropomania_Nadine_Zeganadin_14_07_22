@@ -16,6 +16,10 @@ const Navbar = () => {
                 <NavLink to ="/">
                     <div className='logo'>
                         <h3>Groupomania</h3>
+                        <div className='logo-react'>
+                            <img src="./img/icons/2000px-React-icon.svg_.webp" alt="logo react"></img>
+                            
+                        </div>
                     </div>
                 </NavLink>
             </div>

@@ -104,7 +104,7 @@
 
       span {
         font-style: italic;
-        font-family: $font-1;
+        font-family: lato-light-2;
 
         @media screen and(max-width: 440px) {
           transform: translate(52px, -20px);
@@ -241,7 +241,7 @@
           display: flex;
 
           h3 {
-            font-family: $font-1;
+            font-family: 'lato-light-2';
           }
           span {
             transform: translateX(6px);
@@ -251,7 +251,7 @@
         span {
           font-size: 0.9rem;
           font-style: italic;
-          font-family: $font-1;
+          font-family: 'lato-light-2';
         }
       }
       p {
@@ -283,7 +283,7 @@
             cursor: pointer;
             transition: 0.2s;
             display: inline-block;
-            font-family: $font-3;
+            font-family: 'lato-light-2';
 
             &:hover {
               transform: scale(1.05);

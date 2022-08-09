@@ -8,6 +8,12 @@
   margin: 8px auto;
   position: relative;
   min-height: 100px;
+  padding: 50px;
+  margin-bottom: 20px;
+  &:hover {
+    transform: scale(1.02);
+    background-color: white;
+  }
 
   @media screen and(max-width: 590px) {
     grid-template-columns: 1fr;

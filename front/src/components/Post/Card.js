@@ -42,10 +42,12 @@ const Card = ({ post }) => {
                                     .map((user) => {
                                         if (user._id === post.posterId) return user.picture;
                                         else return null;
+                                        
                                     })
+                                    
                                     .join("")
                             }
-                            alt="poster-pic"
+                            alt="poster-picture"
                         />
                     </div>
                     <div className='card-right'>

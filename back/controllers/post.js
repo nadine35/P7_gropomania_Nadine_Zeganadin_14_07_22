@@ -71,7 +71,9 @@ exports.likePost = async (req, res) => {
       { new: true }
     )
       // .then((data) => res.send(data))
-      .catch((err) => res.status(500).send({ message: err }));
+      // .catch((err) => res.status(400).send({ message: err }));
+
+      .catch((err) => res.status(400).json({  error }));
 
     await User.findByIdAndUpdate(
       req.body.id,
@@ -80,10 +82,13 @@ exports.likePost = async (req, res) => {
       },
       { new: true }
     )
-      .then((data) => res.send(data))
-      .catch((err) => res.status(500).send({ message: err }));
+      // .then((data) => res.send(data))
+      .then(()=>res.status(200).json({message: 'like envoyé'}))
+      // .catch((err) => res.status(500).send({ message: err }));
+      .catch(error => res.status(400).json({ error }));
   } catch (err) {
-    return res.status(400).send(err);
+    // return res.status(400).send(err);
+    console.log(err)
   }
 };
 

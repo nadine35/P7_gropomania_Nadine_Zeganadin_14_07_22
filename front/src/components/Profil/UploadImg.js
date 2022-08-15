@@ -28,7 +28,10 @@ const UploadImg = () => {
                 name="file"
                 accept=".jpg, .jpeg, .png"
                 onChange={(e) => setFile(e.target.files[0])}
+               
+                
             />
+            
             <br />
             <input type="submit" value="Envoyer" />
         </form>

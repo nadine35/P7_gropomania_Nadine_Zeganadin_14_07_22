@@ -8,7 +8,7 @@ const userSchema = mongoose.Schema({
     bio: { type: String },
     likes: { type: [String] },
     // picture: { type: String, default: "./uploads/profil/random-user.png" },
-    picture: { type: String, default: "./uploads/profil/avatar.png" },
+    imageUrl: { type: String, default: "./uploads/profil/avatar.png" },
     isAdmin: { type: Boolean }
 },
     {

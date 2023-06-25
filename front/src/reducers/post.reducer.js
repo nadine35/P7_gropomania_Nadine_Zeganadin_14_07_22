@@ -9,9 +9,13 @@ export default function postReducer(state = initialState, action) {
         case UPDATE_POST:
             return state.map((post) => {
                 if (post._id === action.payload.postId) {
+                    
+                    console.log(post);
+                    console.log(action.payload);
+
                     return {
                         ...post,
-                        message: action.payload.message
+                        data: action.payload.data
                     };
                 } else return post;
             });

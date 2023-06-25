@@ -9,10 +9,16 @@ import { dateParser } from "../../Utils/Utils";
 const UpdateProfil = () => {
     const [bio, setBio] = useState("");
     const [updateForm, setUpdateForm] = useState(false);
+
+    const usersData = useSelector((state) => state.usersReducer);
+
     const userData = useSelector((state) => state.userReducer);
     const dispatch = useDispatch();
 
     const handleUpdate = () => {
+
+        console.log(userData);
+
         dispatch(updateBio(userData._id, bio));
         setUpdateForm(false);
     };
@@ -24,7 +30,6 @@ const UpdateProfil = () => {
             <div className='update-container'>
                 <div className="left-part">
                     <h3>Photo de profil</h3>
-                    <img src={userData.picture} alt="user-pic" />
                     {/* modif 15/08 j'ai le jpeg ou png mais pas l'image */}
                     {/* <input id="file-upload"type="file" name="file" accept=".jpg, .jpeg, .png"/> */}
                     <br/> <br/> <br/> <br/>

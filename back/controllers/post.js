@@ -3,19 +3,23 @@ const User = require("../models/User");
 const fs = require("fs");
 const ObjectID = require("mongoose").Types.ObjectId;
 
+
 exports.createPost = (req, res, next) => {
+
+  console.log("createPost()");
+  console.log(req.body);
+  
   delete req.body._id;
 
   let imageUrl = "";
   if (req.file) {
-    imageUrl = `${req.protocol}://${req.get("host")}/images/${
-      req.file.filename
-    }`;
+    console.log(req.file.filename);
+    imageUrl = req.file.filename;
   }
 
   const post = new Post({
     ...req.body,
-    imageUrl: imageUrl,
+    imageUrl: imageUrl
   });
   post
     .save()
@@ -31,12 +35,15 @@ exports.readPost = (req, res, next) => {
 };
 
 exports.updatePost = (req, res, next) => {
-  const postObject = req.file
+
+  console.log("updatePost()");
+  console.log(req.body);
+  console.log(req.file);
+
+  const postObject = req.file 
     ? {
-        ...JSON.parse(req.body.post),
-        imageUrl: `${req.protocol}://${req.get("host")}/images/${
-          req.file.filename
-        }`,
+      message: req.body.message,
+      imageUrl: req.file.filename
       }
     : { ...req.body };
 
@@ -70,9 +77,6 @@ exports.likePost = async (req, res) => {
       },
       { new: true }
     )
-      // .then((data) => res.send(data))
-      // .catch((err) => res.status(400).send({ message: err }));
-
       .catch((err) => res.status(400).json({  error }));
 
     await User.findByIdAndUpdate(
@@ -82,12 +86,9 @@ exports.likePost = async (req, res) => {
       },
       { new: true }
     )
-      // .then((data) => res.send(data))
       .then(()=>res.status(200).json({message: 'like envoyé'}))
-      // .catch((err) => res.status(500).send({ message: err }));
       .catch(error => res.status(400).json({ error }));
   } catch (err) {
-    // return res.status(400).send(err);
     console.log(err)
   }
 };
@@ -104,7 +105,6 @@ exports.unlikePost = async (req, res) => {
       },
       { new: true }
     )
-      .then((data) => res.send(data))
       .catch((err) => res.status(500).send({ message: err }));
 
     await User.findByIdAndUpdate(
@@ -114,7 +114,7 @@ exports.unlikePost = async (req, res) => {
       },
       { new: true }
     )
-      .then((data) => res.send(data))
+      .then(()=>res.status(200).json({message: 'unlike envoyé'}))
       .catch((err) => res.status(500).send({ message: err }));
   } catch (err) {
     return res.status(400).send(err);

@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const PostSchema = mongoose.Schema({
   posterId: { type: String, required: true },
   message: { type: String, maxlength: 500, trim: true },
-  imageUrl: { type: String, default: "./uploads/profil/avatar.png"  },
+  imageUrl: { type: String, default: "./uploads/post/avatar.png"  },
   likers: { type: [String], required: true },
   comments: {
     type: [

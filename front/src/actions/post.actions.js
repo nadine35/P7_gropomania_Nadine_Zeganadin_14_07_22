@@ -19,10 +19,15 @@ export const EDIT_COMMENT = "EDIT_COMMENT";
 export const DELETE_COMMENT = "DELETE_COMMENT";
 
 export const getPosts = () => {
+    
     return (dispatch) => {
+
+        console.log("getPosts()");
+
         return axios
             .get(`${process.env.REACT_APP_API_URL}api/post/`)
             .then((res) => {
+                console.log(res);
                 dispatch({ type: GET_POSTS, payload: res.data });
             })
             .catch((err) => console.log(err));
@@ -30,24 +35,33 @@ export const getPosts = () => {
 };
 
 export const addPost = (data) => {
-    return (dispatch) => {
-        return axios
-            .post(`${process.env.REACT_APP_API_URL}api/post/`, data)
 
+    console.log(data);
+
+    return () => {
+        return axios
+            .post(`${process.env.REACT_APP_API_URL}api/post/`, data);      
     };
 };
 
-export const updatePost = (postId, message) => {
+export const updatePost = (postId, data) => {
+
     return (dispatch) => {
         return axios({
             method: "put",
-            url: `${process.env.REACT_APP_API_URL}api/post/${postId}`,
-            data: { message }
+            url: `${process.env.REACT_APP_API_URL}api/post/${postId}`, data,
         })
-            .then((res) => {
-                dispatch({ type: UPDATE_POST, payload: { message, postId } });
-            })
-            .catch((err) => console.log(err));
+        .then((res) => {
+            console.log(data);
+
+            dispatch({ type: UPDATE_POST,
+                payload: {
+                    postId,
+                    data
+                } 
+            });
+        })
+        .catch((err) => console.log(err));
     };
 };
 

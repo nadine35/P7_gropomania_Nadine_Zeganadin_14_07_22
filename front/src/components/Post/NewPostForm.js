@@ -5,21 +5,34 @@ import { addPost, getPosts } from '../../actions/post.actions';
 import { isEmpty, timestampParser } from '../../Utils/Utils';
 
 const NewPostForm = () => {
+    
     const [isLoading, setIsLoading] = useState(true);
     const [message, setMessage] = useState("");
-    const [postPicture, setPostPicture] = useState(null);
-    const [file, setFile] = useState();
+
+    const [postPicture, setPostPicture] = useState({ myFile : ""});
+    const [file, setFile] = useState("");
+    
     const userData = useSelector((state) => state.userReducer);
+    
     const dispatch = useDispatch();
 
     const handlePost = async () => {
-        if (message || postPicture) {
+
+        if (message || file) {
+
             const data = new FormData();
             data.append('posterId', userData._id);
             data.append('message', message);
-            if (file) data.append('file', file)
+
+            if (file) await data.append('file', file);
+
+            const imageUrl = file.name;
+            data.append('imageUrl', imageUrl);
+
+            console.log(data);
 
             await dispatch(addPost(data));
+
             dispatch(getPosts());
             cancelPost();
 
@@ -28,11 +41,34 @@ const NewPostForm = () => {
         }
     };
 
-    const handlePicture = (e) => {
-        console.log(e.target.files);
-        setPostPicture(URL.createObjectURL(e.target.files[0]));
-        setFile(e.target.files[0]);
+    const handlePicture = async (e) => {
+
+        e.preventDefault(); // *** ajout nécessaire ?
+
+        const originalFile = e.target.files[0];
+        setFile(originalFile); // *** définit le fichier image appelé ensuite à la validation du formulaire
+
+        // *** pour avoir le fichier converti en base64 pour affichage miniature avant validation:
+        const base64 = await convertToBase64(originalFile);
+        setPostPicture({ ...postPicture, myFile : base64 });
     };
+
+
+    function convertToBase64(file){
+
+        return new Promise((resolve, reject) => {
+            
+            const fileReader = new FileReader();
+            fileReader.readAsDataURL(file);
+            fileReader.onload = () => {
+                resolve(fileReader.result)
+            };
+            fileReader.onerror = (error) => {
+                reject(error)
+            }
+        })
+    }
+
 
     const cancelPost = () => {
         setMessage('');
@@ -46,14 +82,14 @@ const NewPostForm = () => {
 
 
     return (
-        <div className='post-container'>
+        <div className='post-container' encType="multipart/form">
             {isLoading ? (
                 <i className="fas fa-spinner fa-pulse"></i>
             ) : (
                 <>
                     <NavLink to="/profil">
                         <div className="user-info">
-                            <img src={userData.picture} alt="user-img" />
+                            <img src={"./userProfilImages/"+ userData.imageUrl} alt="user-img" />
                         </div>
                     </NavLink>
                     < div className='post-form'>
@@ -62,7 +98,7 @@ const NewPostForm = () => {
                         {message || postPicture ? (
                             <li className='card-container'>
                                 <div className='card-left'>
-                                    <img src={userData.picture} alt="user-pic" />
+                                    <img src={"./userProfilImages/"+ userData.imageUrl} alt="user-pic" />
                                 </div>
                                 <div className='card-right'>
                                     <div className='card-header'>
@@ -73,16 +109,18 @@ const NewPostForm = () => {
                                     </div>
                                     <div className='content'>
                                         <p>{message}</p>
-                                        <img src={postPicture} alt="" />
                                     </div>
                                 </div>
                             </li>
                         ) : null}
 
                         <div className='footer-form'>
+                            {/* *** Bouton pour inclure une image avec le message (post) */}
                             <div className='icon'>
-                                <img src="./img/icons/picture.svg" alt="pic" />
-                                <input type="file" id="file-upload" name="file" accept=".jpg, .jpeg, .png" onChange={(e) => handlePicture(e)} />
+                                <img src={ postPicture.myFile || "./img/icons/picture.svg" } alt="pic" />
+                                <input type="file" id="file-upload" name="file" accept=".jpg, .jpeg, .png" 
+                                    onChange={(e) => handlePicture(e)}
+                                />
                             </div>
                             <div className='btn-send'>
                                 {message || postPicture ? (

@@ -12,7 +12,11 @@ const normalizePort = val => {
   }
   return false;
 };
-const port = normalizePort(process.env.PORT || '3000');
+
+const port = normalizePort(process.env.API_PORT);
+// *** ANCIENNE VERSION: PORT AU LIEU DE API_PORT (à toi de voir laquelle laisser...)
+// const port = normalizePort(process.env.PORT || '3000');
+
 app.set('port', port);
 
 const errorHandler = error => {

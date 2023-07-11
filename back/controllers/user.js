@@ -95,10 +95,44 @@ exports.getAllUsers = (req, res, next) => {
     .catch(error => res.status(400).json({ error }));
 };
 
+exports.uploadImgProfil = (req, res, next) => {
+
+    console.log("uploadImgProfil()");
+    console.log(req);
+  
+    delete req.body._id;
+  
+    let imageUrl = "";
+  
+    if (req.file) {
+      imageUrl = req.file.filename;
+    }
+
+    const user = new User({
+        ...req.body,
+        imageUrl: imageUrl
+    });
+
+    user
+        .save()
+        .then(() => res.status(201).json({ message: "User créé !" }))
+        .catch((error) => res.status(400).json({ error }));
+};
+
+
 exports.updateUser = (req, res, next) => {
-    User.updateOne({ _id: req.params.id }, { bio: req.body.bio, _id: req.params.id })
-    .then(() => res.status(200).json({ message: "Votre profil a bien été modifié" }))
-    .catch(error => res.status(400).json({ error }));
+
+    console.log("updateUser()");
+
+    const userObject = req.file
+    ? {
+        imageUrl: req.file.filename
+    }
+    : { ...req.body };
+  
+    User.updateOne({ _id: req.params.id }, { ...userObject, _id: req.params.id })
+      .then(() => res.status(202).json({ message: "User modifié !" }))
+      .catch((error) => res.status(400).json({ error }));
 };
 
 exports.deleteUser = (req, res, next) => {

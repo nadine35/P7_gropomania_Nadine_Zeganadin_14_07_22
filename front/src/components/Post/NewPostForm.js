@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { addPost, getPosts } from '../../actions/post.actions';
 import { isEmpty, timestampParser } from '../../Utils/Utils';
+import { toast } from 'react-toastify';
 
 const NewPostForm = () => {
     const [isLoading, setIsLoading] = useState(true);
@@ -13,20 +14,33 @@ const NewPostForm = () => {
     const dispatch = useDispatch();
 
     const handlePost = async () => {
-        if (message || postPicture) {
-            const data = new FormData();
-            data.append('posterId', userData._id);
-            data.append('message', message);
-            if (file) data.append('file', file)
+    console.log("1 - handlePost lancé");
 
-            await dispatch(addPost(data));
-            dispatch(getPosts());
-            cancelPost();
+    if (message || postPicture) {
+        console.log("2 - message ou image présent");
 
-        } else {
-            alert("Veuillez écrire un message");
-        }
-    };
+        const data = new FormData();
+
+        data.append('posterId', userData._id);
+        data.append('message', message);
+
+        if (file) data.append('file', file);
+
+        console.log("3 - avant addPost");
+
+        await dispatch(addPost(data));
+
+        console.log("4 - après addPost");
+
+        toast.success("Publication envoyée !");
+
+        dispatch(getPosts());
+        cancelPost();
+
+    } else {
+        toast.error("Veuillez écrire un message ou ajouter une image");
+    }
+};
 
     const handlePicture = (e) => {
         console.log(e.target.files);

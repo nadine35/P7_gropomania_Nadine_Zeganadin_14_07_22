@@ -9,7 +9,7 @@ const LeftNav = () => {
                 <NavLink to='/'>
                     <img src="./img/icons/home.svg" alt="home" />
                 </NavLink>
-                <br />
+                
                 <NavLink to='/profil'>
                     <img src="./img/icons/user.svg" alt="home" />
                 </NavLink>

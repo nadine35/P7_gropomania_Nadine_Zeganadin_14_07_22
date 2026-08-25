@@ -3,6 +3,8 @@ import { useDispatch } from 'react-redux';
 import { getUser } from './actions/user.actions';
 import { UidContext } from './components/AppContext';
 import Routes from "./Routes";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const App = () => {
@@ -19,11 +21,12 @@ const App = () => {
     if (uid) dispatch(getUser(uid));
   }, [uid, dispatch]);
 
-  return (
-    <UidContext.Provider value={uid}>;
-      <Routes />
-    </UidContext.Provider>
-  );
+ return (
+  <UidContext.Provider value={uid}>
+    <Routes />
+    <ToastContainer />
+  </UidContext.Provider>
+);
 };
 
 export default App;

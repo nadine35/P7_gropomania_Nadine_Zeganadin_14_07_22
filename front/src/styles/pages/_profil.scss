@@ -1,344 +1,492 @@
-.profil-page {
-  margin: 80px auto 0;
+
+.profil-container {
+  margin: 0 auto;
   max-width: 1200px;
+  padding: 100px 20px 0;
+}
+// =========================
+// CONNEXION
+// =========================
 
-  .icons {
-    top: 55px;
+.log-container {
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 60%) minmax(0, 40%);
+  gap: 20px;
+  align-items: center;
+
+  @media screen and (max-width: 885px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.connection-form {
+  border: none;
+  background: $color-4;
+  width: min(90%, 490px);
+  min-width: 0;
+  text-align: center;
+  margin: 0 auto;
+  padding: 25px;
+  border-radius: 20px;
+  box-sizing: border-box;
+
+  @media screen and (max-width: 550px) {
+    width: 100%;
+    padding: 20px 15px;
   }
 
-  .log-container {
-    margin: 0 auto;
+  .form-container {
     display: grid;
-    grid-template-columns: 60% 40%;
-
-    @media screen and (max-width: 885px) {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  .connection-form {
-    border: none;
-    background: $color-4;
-    min-width: 490px;
-    width: 90%;
-    text-align: center;
-    margin: 0 auto;
-    padding: 20px;
-    border-radius: 20px;
+    grid-template-columns: 30% 70%;
+    gap: 10px;
 
     @media screen and (max-width: 550px) {
-      min-width: 200px;
+      grid-template-columns: 1fr;
     }
 
-    .form-container {
-      display: grid;
-      grid-template-columns: 30% 70%;
+    ul {
+      padding: 0;
+      margin: 0;
+      list-style: none;
 
-      @media screen and (max-width: 550px) {
-        grid-template-columns: 1fr;
+      li {
+        cursor: pointer;
+        border-radius: 20px;
+        padding: 10px 20px;
+        transition:
+          transform 0.2s ease,
+          background 0.2s ease;
+
+        @media screen and (max-width: 550px) {
+          width: 80%;
+          margin: 0 auto;
+        }
       }
 
-      ul {
-        li {
-          cursor: pointer;
-          border-radius: 20px;
-          padding: 10px 20px;
-          transition: 0.2s;
+      .active-btn {
+        background: $color-1;
 
-          @media screen and (max-width: 550px) {
-            width: 80%;
-            margin: 0 auto;
-          }
+        &:hover {
+          background: $color-2;
         }
-        .active-btn {
-          background: $color-1;
+      }
 
-          &:hover {
+      li:not(.active-btn) {
+        &:hover {
+          transform: translateX(3px);
+        }
+      }
+
+      #login {
+        position: relative;
+
+        @media screen and (max-width: 550px) {
+          margin-bottom: 30px;
+
+          &::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 1px;
             background: $color-2;
           }
         }
-        li:not(.active-btn) {
-          &:hover {
-            transform: translateX(3px);
-          }
-        }
-        #login {
-          position: relative;
-          @media screen and (max-width: 550px) {
-            margin-bottom: 30px;
-
-            &:after {
-              content: "";
-              position: absolute;
-              bottom: -10px;
-              left: 50%;
-              transform: translateX(-50%);
-              width: 80%;
-              height: 1px;
-              background: $color-2;
-            }
-          }
-        }
-      }
-      form {
-        input {
-          padding: 14px 20px;
-          margin: 0;
-          font-size: 1.2rem;
-          font-family: 'lato-light-2';
-          border-radius: 20px;
-
-          &:focus {
-            box-shadow: 0 0 3px rgba(51, 51, 51, 0.2);
-          }
-        }
-        a {
-          color: rgb(62, 62, 214);
-        }
       }
     }
-  }
-  h1 {
-    text-align: center;
-    margin: 10px 0 6px;
-  }
-  .img-container {
-    display: grid;
-    align-items: center;
-    height: 100%;
 
-    img {
-      height: 280px;
-
-      @media screen and (max-width: 1050px) {
-        height: 220px;
-      }
-      @media screen and (max-width: 950px) {
-        height: 200px;
-      }
-      @media screen and (max-width: 885px) {
-        display: none;
-      }
-    }
-  }
-  .update-container {
-    display: grid;
-    grid-template-columns: 50% 50%;
-
-    @media screen and (max-width: 700px) {
-      grid-template-columns: 1fr;
-    }
-
-    > div {
-      background: $color-4;
-      border-radius: 20px;
-      padding: 25px;
-      margin: 20px 10px;
-
-      @media screen and (max-width: 700px) {
-        margin: 10px 10px;
-      }
-    }
-    .left-part {
-      text-align: center;
-
-      h3 {
-        margin-bottom: 12px;
-      }
-
-      img {
-        height: 180px;
-        width: 180px;
-        border-radius: 46px;
-        object-fit: cover;
-        margin-bottom: 30px;
-        box-shadow: 0 0 6px rgba(51, 51, 51, 0.363);
-      }
-      form {
-        position: relative;
-
-        label {
-          position: absolute;
-          transform: translate(-50%, -50%);
-          width: 270px;
-          background: $color-3;
-          color: $color-2;
-          border-radius: 20px;
-          display: inline-block;
-          padding: 9px 0;
-          transition: 0.2s;
-          z-index: 10;
-          cursor: pointer;
-        }
-        input[type="file"] {
-          position: absolute;
-          opacity: 1;
-          transform: translate(-134px, -50%);
-          cursor: pointer;
-          padding: 10px 20px;
-
-          @media screen and (max-width: 1121px) {
-            opacity: 0;
-          }
-        }
-        input[type="submit"] {
-          margin-top: 10px;
-          border-radius: 20px;
-
-          &:hover {
-            letter-spacing: 1px;
-          }
-        }
-      }
-      p {
-        color: red;
-        font-family: 'lato-light-2';
-        margin-top: 6px;
-      }
-    }
-    .right-part {
-      text-align: center;
-      padding: 20px 40px;
-      h3 {
-        margin-bottom: 12px;
-      }
-      p,
-      textarea {
-        min-height: 80px;
-        border: 1px solid $color-1;
-        border-radius: 20px 20px 6px 20px;
-        padding: 10px 20px;
-        font-size: 1.1rem;
-      }
-      textarea {
-        width: 100%;
-        margin-bottom: -6px;
+    form {
+      input {
+        padding: 14px 20px;
+        margin: 0;
         font-size: 1.2rem;
-      }
-      button {
-        margin: 5px 0;
-        float: right;
-      }
-      h4 {
-        margin: 60px 0 10px;
-      }
-      h5 {
-        background: $color-1;
-        color: $color-4;
-        font-family: 'lato-light-2';
-        margin: 20px 0;
-        padding: 12px;
-        font-size: 1.1rem;
+        font-family: "lato-light-2";
         border-radius: 20px;
-        transition: 0.2s;
-        cursor: pointer;
+        box-sizing: border-box;
 
-        &:hover {
-          filter: brightness(110%);
-          transform: translateX(2px);
+        &:focus {
+          outline: none;
+          box-shadow: 0 0 3px rgba(51, 51, 51, 0.2);
         }
+      }
+
+      a {
+        color: rgb(62, 62, 214);
       }
     }
   }
-  .popup-profil-container {
-    z-index: 100;
-    width: 100%;
-    top: 0;
-    left: 0;
-    height: 100%;
-    position: fixed;
-    animation: popup 1s forwards;
+}
 
-    @keyframes popup {
-      to {
-        backdrop-filter: blur(2px);
+// =========================
+// TITRE
+// =========================
+
+h1 {
+  text-align: center;
+  margin: 10px 0 20px;
+}
+
+// =========================
+// IMAGE DE CONNEXION
+// =========================
+
+.img-container {
+  display: grid;
+  place-items: center;
+  height: 100%;
+
+  img {
+    height: 280px;
+    max-width: 100%;
+    object-fit: contain;
+
+    @media screen and (max-width: 1050px) {
+      height: 220px;
+    }
+
+    @media screen and (max-width: 950px) {
+      height: 200px;
+    }
+
+    @media screen and (max-width: 885px) {
+      display: none;
+    }
+  }
+}
+
+// =========================
+// PROFIL
+// =========================
+
+.update-container {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  align-items: start;
+
+  @media screen and (max-width: 700px) {
+    grid-template-columns: 1fr;
+  }
+
+  > div {
+    background: $color-4;
+    border-radius: 20px;
+    padding: 25px;
+    margin: 20% 0 0;
+    box-sizing: border-box;
+    min-width: 0;
+  }
+
+  // =========================
+  // PARTIE GAUCHE
+  // =========================
+
+  .left-part {
+    text-align: center;
+
+    h3 {
+      margin: 0 0 20px;
+    }
+
+    // Image de profil / icon-user
+    > img {
+      display: block;
+      position: relative;
+      width: 180px;
+      height: 180px;
+      margin: 0 auto 30px;
+      padding: 0;
+      border-radius: 46px;
+      object-fit: cover;
+      box-sizing: border-box;
+      box-shadow: 0 0 6px rgba(51, 51, 51, 0.363);
+    }
+
+    .upload-pic {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+      margin: 0;
+    }
+
+    .upload-pic label {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      width: min(270px, 100%);
+      min-height: 42px;
+
+      background: $color-3;
+      color: $color-2;
+      border-radius: 20px;
+
+      padding: 9px 20px;
+      box-sizing: border-box;
+
+      cursor: pointer;
+      z-index: 1;
+
+      transition:
+        transform 0.2s ease,
+        filter 0.2s ease;
+
+      &:hover {
+        filter: brightness(110%);
+        transform: translateY(-1px);
       }
     }
 
-    .modal {
+    .upload-pic input[type="file"] {
       position: absolute;
-      top: 10%;
-      left: 50%;
-      transform: translate(-100%);
-      background: $color-2;
-      padding: 25px;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .upload-pic input[type="submit"] {
+      margin: 0;
+      padding: 10px 25px;
+      border: none;
       border-radius: 20px;
-      box-shadow: 0 0 2px rgba(131, 130, 130, 0.356);
-      overflow: auto;
-      transform: scaleY(0);
-      transform-origin: center;
-      animation: modal .5s forwards;
+      cursor: pointer;
 
-      h3 {
-        min-width: 200px;
+      &:hover {
+        letter-spacing: 1px;
+      }
+    }
+
+    p {
+      color: red;
+      font-family: "lato-light-2";
+      margin-top: 6px;
+    }
+  }
+  // =========================
+  // PARTIE DROITE
+  // =========================
+
+  .right-part {
+    text-align: center;
+    padding: 25px 40px;
+
+    @media screen and (max-width: 900px) {
+      padding: 25px;
+    }
+
+    h3 {
+      margin: 0 0 15px;
+    }
+
+    .bio-update {
+      width: 100%;
+    }
+
+    p,
+    textarea {
+      width: 100%;
+      min-height: 80px;
+      box-sizing: border-box;
+
+      border: 1px solid $color-1;
+      border-radius: 20px 20px 6px 20px;
+
+      padding: 12px 20px;
+      font-size: 1.1rem;
+      line-height: 1.5;
+    }
+
+    p {
+      margin: 0;
+      cursor: pointer;
+      overflow-wrap: anywhere;
+    }
+
+    textarea {
+      display: block;
+      margin: 0 0 10px;
+      resize: vertical;
+      font-family: inherit;
+      font-size: 1.2rem;
+
+      &:focus {
+        outline: none;
+        box-shadow: 0 0 4px rgba(51, 51, 51, 0.2);
+      }
+    }
+
+    button {
+      margin: 5px 0;
+      float: right;
+      border-radius: 20px;
+    }
+
+    h4 {
+      clear: both;
+      margin: 60px 0 10px;
+    }
+
+    h5 {
+      background: $color-1;
+      color: $color-4;
+      font-family: "lato-light-2";
+      margin: 20px 0;
+      padding: 12px;
+      font-size: 1.1rem;
+      border-radius: 20px;
+      transition:
+        filter 0.2s ease,
+        transform 0.2s ease;
+      cursor: pointer;
+
+      &:hover {
+        filter: brightness(110%);
+        transform: translateX(2px);
+      }
+    }
+  }
+}
+
+// =========================
+// POPUP PROFIL
+// =========================
+
+.popup-profil-container {
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: fixed;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
+  padding: 10vh 20px 20px;
+  box-sizing: border-box;
+
+  animation: popup 0.3s forwards;
+
+  @keyframes popup {
+    to {
+      backdrop-filter: blur(2px);
+    }
+  }
+
+  .modal {
+    position: relative;
+
+    width: min(600px, 100%);
+    max-height: 80vh;
+
+    background: $color-2;
+    padding: 25px;
+    border-radius: 20px;
+
+    box-shadow: 0 0 2px rgba(131, 130, 130, 0.356);
+
+    overflow: auto;
+
+    transform: scaleY(0);
+    transform-origin: top center;
+
+    animation: modal 0.5s forwards;
+
+    h3 {
+      min-width: 200px;
+    }
+
+    @keyframes modal {
+      to {
+        transform: scaleY(1);
+      }
+    }
+
+    .cross {
+      position: absolute;
+      top: 25px;
+      right: 25px;
+
+      transition: transform 0.1s ease;
+      cursor: pointer;
+
+      &:hover {
+        transform: scale(1.07);
+      }
+    }
+
+    ul {
+      margin: 20px 0 0;
+      padding: 0;
+
+      max-height: 500px;
+      overflow-y: auto;
+      overflow-x: hidden;
+
+      list-style: none;
+
+      &::-webkit-scrollbar {
+        width: 4px;
       }
 
-      @keyframes modal {
-        to {
-          transform: scale(1) translate(-50%);
-        }
+      &::-webkit-scrollbar-track {
+        background: $color-4;
       }
 
-      .cross {
-        position: absolute;
-        top: 25px;
-        right: 25px;
-        transition: 0.1s;
-        cursor: pointer;
-
-        &:hover {
-          transform: scale(1.07);
-        }
+      &::-webkit-scrollbar-thumb {
+        background: $color-1;
+        border-radius: 10px;
       }
 
-      ul {
-        margin: 20px 0 0;
-        max-height: 500px;
-        overflow-y: scroll;
-        overflow-x: hidden;
+      &::-webkit-scrollbar-thumb:hover {
+        background: #555;
+      }
 
-        &::-webkit-scrollbar {
-          width: 2px;
-        }
-        &::-webkit-scrollbar-track {
-          background: $color-4;
-        }
-        &::-webkit-scrollbar-thumb {
-          background: $color-1;
-        }
-        &::-webkit-scrollbar-thumb:hover {
-          background: #555;
+      li {
+        display: grid;
+        grid-template-columns: 64px minmax(0, 1fr) 114px;
+        align-items: center;
+        gap: 10px;
+        margin: 10px 0;
+
+        img {
+          height: 50px;
+          width: 50px;
+          border-radius: 20px;
+          object-fit: cover;
+          box-shadow: 0 0 2px rgba(51, 51, 51, 0.376);
         }
 
-        li {
-          display: grid;
-          grid-template-columns: 64px 1fr 114px;
-          align-items: center;
-          margin: 10px 0;
+        h4 {
+          text-align: left;
+          min-width: 0;
+          overflow-wrap: anywhere;
+        }
 
-          img {
-            height: 50px;
-            width: 50px;
+        .follow-handler {
+          text-align: left;
+
+          button {
+            background: $color-4;
             border-radius: 20px;
-            object-fit: cover;
-            box-shadow: 0 0 2px rgba(51, 51, 51, 0.376);
-          }
-          h4 {
-            text-align: left;
-            min-width: 210px;
-          }
-          .follow-handler {
-            text-align: left;
+            margin-right: 6px;
 
-            button {
-              background: $color-4;
-              border-radius: 20px;
-              margin-right: 6px;
-
-              &:hover {
-                color: $color-3;
-                transform: translateX(2px);
-              }
+            &:hover {
+              color: $color-3;
+              transform: translateX(2px);
             }
           }
         }

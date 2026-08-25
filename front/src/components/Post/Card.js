@@ -47,7 +47,7 @@ const Card = ({ post }) => {
                                     
                                     .join("")
                             }
-                            alt="poster-picture"
+                          alt="Photo de profil"
                         />
                     </div>
                     <div className='card-right'>

@@ -164,32 +164,70 @@ exports.login = (req, res, next) => {
         });
 };
 
-exports.upload = (req, res, next) => {
+// exports.upload = (req, res, next) => {
+//     if (!req.file) {
+//         return res.status(400).json({
+//             error: "Aucun fichier reçu"
+//         });
+//     }
+
+//     const picture = `${req.protocol}://${req.get('host')}/images/${req.file.filename}`;
+
+//     User.updateOne(
+//         { _id: req.body.userId },
+//         { picture: picture }
+//     )
+//     .then(() => {
+//         res.status(200).json({
+//             message: "Image modifiée",
+//             picture: picture
+//         });
+//     })
+//     .catch(error => {
+//         console.error("Erreur upload :", error);
+//         res.status(500).json({ error });
+//     });
+// };
+
+exports.upload = (req, res) => {
+    console.log("=== UPLOAD ===");
+    console.log("userId reçu :", req.body.userId);
+    console.log("fichier reçu :", req.file);
+
     if (!req.file) {
         return res.status(400).json({
             error: "Aucun fichier reçu"
         });
     }
 
-    const picture = `${req.protocol}://${req.get('host')}/images/${req.file.filename}`;
+    const picture = `${req.protocol}://${req.get("host")}/images/${req.file.filename}`;
 
     User.updateOne(
         { _id: req.body.userId },
-        { picture: picture }
+        { $set: { picture: picture } }
     )
-    .then(() => {
-        res.status(200).json({
+    .then(async (result) => {
+        console.log("=== RÉSULTAT UPDATE ===");
+        console.log(result);
+
+        // On relit immédiatement l'utilisateur
+        const user = await User.findById(req.body.userId);
+
+        console.log("=== UTILISATEUR APRÈS UPDATE ===");
+        console.log(user);
+
+        return res.status(200).json({
             message: "Image modifiée",
-            picture: picture
+            picture: picture,
+            result: result,
+            user: user
         });
     })
     .catch(error => {
         console.error("Erreur upload :", error);
-        res.status(500).json({ error });
+        return res.status(500).json({ error });
     });
 };
-
-
 
 
 exports.userInfo = (req, res, next) => {

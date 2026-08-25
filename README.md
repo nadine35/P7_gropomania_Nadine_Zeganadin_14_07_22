@@ -1,6 +1,31 @@
 
 # Groupomania 🌐
 
+## Sommaire
+
+- [Fonctionnalités](#fonctionnalités)
+  - [Gestion des utilisateurs](#-gestion-des-utilisateurs)
+  - [Publications](#-publications)
+  - [Commentaires](#-commentaires)
+  - [Likes](#️-likes)
+- [Technologies utilisées](#technologies-utilisées)
+  - [Frontend](#frontend)
+  - [Backend](#backend)
+  - [Base de données](#base-de-données)
+- [Installation du projet](#installation-du-projet)
+  - [Prérequis](#prérequis)
+  - [Cloner le projet](#cloner-le-projet)
+  - [Backend](#backend-1)
+  - [Frontend](#frontend-1)
+- [Utilisation](#utilisation)
+- [Production](#production)
+- [Tests](#tests)
+- [Structure du projet](#structure-du-projet)
+- [API](#api)
+- [Sécurité](#sécurité)
+- [Contexte et évolution du projet](#contexte-et-évolution-du-projet)
+- [Perspectives d'évolution](#perspectives-dévolution)
+
 Application web de type réseau social développée dans le cadre de ma formation de Développeuse Web.
 
 Le projet est composé de :
@@ -275,14 +300,12 @@ P7_gropomania_Nadine_Zeganadin_14_07_22/
 │   ├── images/
 │   ├── app.js
 │   ├── server.js
-│   ├── package.json
-│   └── .env                 # non versionné
+│   └── package.json
 │
 ├── front/
 │   ├── public/
 │   ├── src/
-│   ├── package.json
-│   └── .env                 # non versionné
+│   └── package.json
 │
 ├── .gitignore
 └── README.md
@@ -327,82 +350,49 @@ Les images sont servies depuis :
 
 ---
 
-# Contexte du projet
+# Contexte et évolution du projet
 
-Projet réalisé dans le cadre de ma formation de Développeuse Web.
+Ce projet a été initialement réalisé en 2022 dans le cadre de ma formation de Développeuse Web.
 
-Ce projet m'a permis de mettre en pratique le développement d'une application web fullstack avec React, Node.js, Express et MongoDB.
+En 2026, j'ai choisi de reprendre et de remanier l'ensemble du projet afin de le remettre en état de fonctionnement et de consolider mes compétences en développement fullstack.
 
 J'ai notamment travaillé sur :
 
-- la création d'une API REST ;
-- la gestion d'une base de données MongoDB ;
-- l'authentification des utilisateurs ;
-- la sécurisation des mots de passe ;
-- la gestion des publications ;
-- la gestion des commentaires ;
-- la gestion des likes ;
-- la gestion des images ;
-- la modification de la photo de profil ;
-- la communication entre un frontend React et un backend Node.js.
+- la remise en fonctionnement du backend et du frontend ;
+- la reconnexion et la configuration de MongoDB Atlas ;
+- la correction et l'amélioration de l'inscription et de la connexion ;
+- la gestion de l'authentification avec JWT ;
+- la sécurisation des mots de passe avec bcrypt ;
+- la gestion et la validation des données utilisateur ;
+- la gestion de l'upload et de la modification des photos de profil ;
+- la gestion des images avec Multer ;
+- la communication entre le frontend React et l'API Node.js/Express ;
+- la correction de différents problèmes liés à l'ancienne version du projet ;
+- la mise à jour de la documentation du projet ;
+- la mise en place d'un `.gitignore` adapté afin de protéger les fichiers contenant des informations sensibles.
 
-Ce projet constitue une étape de mon parcours vers le développement logiciel fullstack.
+Cette reprise m'a permis de consolider mes connaissances en React, Redux, Node.js, Express, MongoDB, API REST, authentification et gestion des fichiers.
 
+Le projet constitue aujourd'hui une version remise à jour d'un travail réalisé en 2022 et témoigne de mon évolution dans le développement web fullstack.
 
+## Perspectives d'évolution
 
+Je souhaite poursuivre le développement de ce projet en le faisant évoluer progressivement vers une application dédiée à la conservation et à la transmission de la mémoire familiale.
 
+Les futures évolutions pourront notamment inclure :
 
+- la création d'un arbre généalogique ;
+- la gestion d'albums photos ;
+- une chronologie des événements familiaux ;
+- la rédaction et le partage de récits et d'anecdotes ;
+- la gestion des relations entre les membres d'une famille ;
+- la gestion des droits d'accès aux informations.
 
-
-
-
-
-
-
-
-
-# P7_gropomania_Nadine_Zeganadin_14_07_22
-
-# reseau-social-app backend
-
-### Project setup
-npm install
-
-
-### Configuration connexion base de donnée
-Veuillez créer votre fichier .env dans votre dossier racine du projet pour vous connecter à votre base de données mongodb
-Ajouter un code pour la signature du token.
-
-Exemple de mon fichier .env à modifier, remplacer les x par vos valeurs :
-
-DB_HOST=x
-DB_USER=x
-DB_PASSWORD=x
-JWT_SIGN_SECRET=x
-
-### Execution du code
-En ligne de commande faire : 
-
-nodemon server OU npm run server
-
----------------------------------------------------------------------------------------------------------
-
-# reseau-social-app frontend
-
-## Project setup
-npm install
+Ces fonctionnalités constituent une feuille de route pour les prochaines évolutions du projet.
 
 
-### Compiles and hot-reloads for development
-npm run serve
 
 
-### Compiles and minifies for production
-npm run build
-
-
-### Lints and fixes files
-npm run lint
 
 
 

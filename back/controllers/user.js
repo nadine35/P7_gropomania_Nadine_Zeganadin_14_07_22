@@ -210,7 +210,7 @@ exports.upload = (req, res) => {
         console.log("=== RÉSULTAT UPDATE ===");
         console.log(result);
 
-        // On relit immédiatement l'utilisateur
+        // On relie immédiatement l'utilisateur
         const user = await User.findById(req.body.userId);
 
         console.log("=== UTILISATEUR APRÈS UPDATE ===");

@@ -20,13 +20,20 @@ app.use((req, res, next) => {
 });
 
 
+// mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}`,
+//   {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true
+//   })
+
 mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}`,
   {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    family: 4
   })
   .then(() => console.log('Connexion à MongoDB réussie !'))
-  .catch(() => console.log('Connexion à MongoDB échouée !'));
+.catch((error) => console.log('Connexion à MongoDB échouée !', error));
 
 
 app.use('/images', express.static(path.join(__dirname, 'images')));

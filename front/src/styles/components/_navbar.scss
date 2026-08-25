@@ -7,7 +7,7 @@ nav {
   z-index: 10;
   top: 0;
 
-  @media screen and(max-width: 1251px) {
+  @media screen and (max-width: 1251px) {
     padding: 0 20px;
   }
 
@@ -66,7 +66,7 @@ nav {
       .welcome {
         transform: translateY(2px);
 
-        @media screen and(max-width: 590px) {
+        @media screen and (max-width: 590px) {
           display: none;
         }
         

@@ -2,9 +2,8 @@ const bcrypt = require('bcrypt');  // npm install --save bcrypt
 const jwtUtils = require('../middleware/auth');
 const User = require('../models/User');
 
-const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const PASSWORD_REGEX = /^(?=.*\d).{4,8}$/;
-
 exports.signup = (req, res, next) => {
 
     const user = {...req.body};
@@ -50,38 +49,148 @@ exports.signup = (req, res, next) => {
     .catch(error => res.status(500).json({ error }));
 };
 
-exports.login = (req, res , next) => {
+// exports.login = (req, res , next) => {
 
-    // Params
-    const user = {...req.body};
+//     // Params
+//     const user = {...req.body};
 
-    if(user.email == null || user.password == null) {
-        return res.status(400).json({ 'error': 'un des champs est vide !' });
+//     if(user.email == null || user.password == null) {
+//         return res.status(400).json({ 'error': 'un des champs est vide !' });
+//     }
+
+//     User.findOne({ email: req.body.email })
+//     .then(function(userFound) {
+//         if(userFound) {
+
+//             bcrypt.compare(user.password, userFound.password, function(errBcrypt, resBcrypt) {
+//                 if(resBcrypt) {
+//                     return res.status(200).json({
+//                         'userId': userFound.id,
+//                         'token': jwtUtils.generateTokenForUser(userFound)
+//                     })
+//                 } else {
+//                     return res.status(400).json({ 'error': 'password invalide' });
+//                 }
+//             });
+//         } else {
+//             return res.status(400).json({ "error": "l'utilisateur n'existe pas dans la base de donnée" });
+//         }
+
+//     })
+//     // .catch(function(err) {
+//     //     return res.status(500).json({ "error": "impossible de vérifier l'utilisateur" });
+//     // })
+
+//     .catch(function(err) {
+//     console.error("Erreur login :", err);
+//     return res.status(500).json({
+//         error: "impossible de vérifier l'utilisateur",
+//         details: err.message
+//     });
+// });
+// };
+
+exports.login = (req, res, next) => {
+
+    console.log("=== LOGIN APPELÉ ===");
+    console.log("Body reçu :", req.body);
+
+    const user = { ...req.body };
+
+    if (user.email == null || user.password == null) {
+        console.log("Email ou password manquant");
+
+        return res.status(400).json({
+            error: "un des champs est vide !"
+        });
     }
 
+    console.log("Recherche utilisateur :", user.email);
+
     User.findOne({ email: req.body.email })
-    .then(function(userFound) {
-        if(userFound) {
+        .then(function(userFound) {
 
-            bcrypt.compare(user.password, userFound.password, function(errBcrypt, resBcrypt) {
-                if(resBcrypt) {
-                    return res.status(200).json({
-                        'userId': userFound.id,
-                        'token': jwtUtils.generateTokenForUser(userFound)
-                    })
-                } else {
-                    return res.status(400).json({ 'error': 'password invalide' });
-                }
+            console.log("Utilisateur trouvé :", !!userFound);
+
+            if (userFound) {
+
+                console.log("Comparaison du mot de passe...");
+
+                bcrypt.compare(
+                    user.password,
+                    userFound.password,
+                    function(errBcrypt, resBcrypt) {
+
+                        console.log("Erreur bcrypt :", errBcrypt);
+                        console.log("Résultat bcrypt :", resBcrypt);
+
+                        if (resBcrypt) {
+
+                            console.log("Mot de passe correct");
+
+                            return res.status(200).json({
+                                userId: userFound.id,
+                                token: jwtUtils.generateTokenForUser(userFound)
+                            });
+
+                        } else {
+
+                            console.log("Mot de passe incorrect");
+
+                            return res.status(400).json({
+                                error: "password invalide"
+                            });
+                        }
+                    }
+                );
+
+            } else {
+
+                console.log("Utilisateur introuvable");
+
+                return res.status(400).json({
+                    error: "l'utilisateur n'existe pas dans la base de donnée"
+                });
+            }
+        })
+        .catch(function(err) {
+
+            console.error("ERREUR LOGIN :", err);
+
+            return res.status(500).json({
+                error: "impossible de vérifier l'utilisateur",
+                details: err.message
             });
-        } else {
-            return res.status(400).json({ "error": "l'utilisateur n'existe pas dans la base de donnée" });
-        }
-
-    })
-    .catch(function(err) {
-        return res.status(500).json({ "error": "impossible de vérifier l'utilisateur" });
-    })
+        });
 };
+
+exports.upload = (req, res, next) => {
+    if (!req.file) {
+        return res.status(400).json({
+            error: "Aucun fichier reçu"
+        });
+    }
+
+    const picture = `${req.protocol}://${req.get('host')}/images/${req.file.filename}`;
+
+    User.updateOne(
+        { _id: req.body.userId },
+        { picture: picture }
+    )
+    .then(() => {
+        res.status(200).json({
+            message: "Image modifiée",
+            picture: picture
+        });
+    })
+    .catch(error => {
+        console.error("Erreur upload :", error);
+        res.status(500).json({ error });
+    });
+};
+
+
+
 
 exports.userInfo = (req, res, next) => {
     User.findOne({ _id: req.params.id })

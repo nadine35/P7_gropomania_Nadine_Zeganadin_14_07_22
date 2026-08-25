@@ -5,7 +5,7 @@
     position: fixed;
     z-index: 10;
 
-    @media screen and(max-width: 590px) {
+    @media screen and (max-width: 590px) {
       margin: 2px 0 0 -9px;
     }
 
@@ -35,7 +35,7 @@
         }
         &:hover::before {
           transform: scale(1);
-          @media screen and(max-width: 590px) {
+          @media screen and (max-width: 590px) {
             background: $color-1;
             height: 34px;
             width: 34px;
@@ -43,7 +43,7 @@
         }
 
         img {
-          @media screen and(max-width: 590px) {
+          @media screen and (max-width: 590px) {
             height: 34px;
             width: 34px;
           }
@@ -70,7 +70,7 @@
               transform: scaleY(1);
             }
           }
-          @media screen and(max-width: 590px) {
+          @media screen and (max-width: 590px) {
             height: 33px;
             left: -8px;
           }

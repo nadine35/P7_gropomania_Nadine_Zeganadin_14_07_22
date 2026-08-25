@@ -15,18 +15,60 @@ export const getUser = (uid) => {
     }
 };
 
-export const uploadPicture = (data, id) => {
+// export const uploadPicture = (data, id) => {
+//     return (dispatch) => {
+//         return axios
+//             .post(`${process.env.REACT_APP_API_URL}api/auth/upload`, data)
+//             .then((res) => {
+//                 return axios
+//                     .get(`${process.env.REACT_APP_API_URL}api/auth/${id}`)
+//                     .then((res) => {
+//                         dispatch({ type: UPLOAD_PICTURE, payload: res.data.picture });
+//                     })
+//             })
+//             .catch((err) => console.log(err));
+//     };
+// };
+
+// export const uploadPicture = (data) => {
+//     return (dispatch) => {
+//         return axios
+//             .post(
+//                 `${process.env.REACT_APP_API_URL}api/auth/upload`,
+//                 data
+//             )
+//             .then((res) => {
+//                 console.log("Réponse upload :", res.data);
+
+//                 dispatch({
+//                     type: UPLOAD_PICTURE,
+//                     payload: res.data.picture
+//                 });
+//             })
+//             .catch((err) => {
+//                 console.error("Erreur upload :", err);
+//             });
+//     };
+// };
+
+export const uploadPicture = (data) => {
     return (dispatch) => {
         return axios
-            .post(`${process.env.REACT_APP_API_URL}api/auth/upload`, data)
+            .post(
+                `${process.env.REACT_APP_API_URL}api/auth/upload`,
+                data
+            )
             .then((res) => {
-                return axios
-                    .get(`${process.env.REACT_APP_API_URL}api/auth/${id}`)
-                    .then((res) => {
-                        dispatch({ type: UPLOAD_PICTURE, payload: res.data.picture });
-                    })
+                console.log("Réponse du serveur :", res.data);
+
+                dispatch({
+                    type: UPLOAD_PICTURE,
+                    payload: res.data.picture
+                });
             })
-            .catch((err) => console.log(err));
+            .catch((err) => {
+                console.error("Erreur upload :", err);
+            });
     };
 };
 

@@ -11,7 +11,7 @@
     display: grid;
     grid-template-columns: 60% 40%;
 
-    @media screen and(max-width: 885px) {
+    @media screen and (max-width: 885px) {
       grid-template-columns: 1fr;
     }
   }
@@ -26,7 +26,7 @@
     padding: 20px;
     border-radius: 20px;
 
-    @media screen and(max-width: 550px) {
+    @media screen and (max-width: 550px) {
       min-width: 200px;
     }
 
@@ -34,7 +34,7 @@
       display: grid;
       grid-template-columns: 30% 70%;
 
-      @media screen and(max-width: 550px) {
+      @media screen and (max-width: 550px) {
         grid-template-columns: 1fr;
       }
 
@@ -45,7 +45,7 @@
           padding: 10px 20px;
           transition: 0.2s;
 
-          @media screen and(max-width: 550px) {
+          @media screen and (max-width: 550px) {
             width: 80%;
             margin: 0 auto;
           }
@@ -64,7 +64,7 @@
         }
         #login {
           position: relative;
-          @media screen and(max-width: 550px) {
+          @media screen and (max-width: 550px) {
             margin-bottom: 30px;
 
             &:after {
@@ -110,13 +110,13 @@
     img {
       height: 280px;
 
-      @media screen and(max-width: 1050px) {
+      @media screen and (max-width: 1050px) {
         height: 220px;
       }
-      @media screen and(max-width: 950px) {
+      @media screen and (max-width: 950px) {
         height: 200px;
       }
-      @media screen and(max-width: 885px) {
+      @media screen and (max-width: 885px) {
         display: none;
       }
     }
@@ -125,7 +125,7 @@
     display: grid;
     grid-template-columns: 50% 50%;
 
-    @media screen and(max-width: 700px) {
+    @media screen and (max-width: 700px) {
       grid-template-columns: 1fr;
     }
 
@@ -135,7 +135,7 @@
       padding: 25px;
       margin: 20px 10px;
 
-      @media screen and(max-width: 700px) {
+      @media screen and (max-width: 700px) {
         margin: 10px 10px;
       }
     }
@@ -177,7 +177,7 @@
           cursor: pointer;
           padding: 10px 20px;
 
-          @media screen and(max-width: 1121px) {
+          @media screen and (max-width: 1121px) {
             opacity: 0;
           }
         }

@@ -11,6 +11,7 @@ dotenv.config();
 
 const userRoutes = require('./routes/user');
 const postsRoutes = require('./routes/post');
+const familyRoutes = require('./routes/family');
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -39,6 +40,7 @@ mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD
 app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use('/api/auth', userRoutes);
 app.use('/api/post', postsRoutes);
+app.use('/api/family', familyRoutes);
 
 
 module.exports = app;

@@ -18,9 +18,22 @@ module.exports = {
             expiresIn: '24h'
         })
     },
-    parseAuthorization: function(authorization) {
-        return (authorization != null) ? authorization.replace('Bearer ', '') : null;
-    },
+    // parseAuthorization: function(authorization) {
+    //     return (authorization != null) ? authorization.replace('Bearer ', '') : null;
+    // },
+
+parseAuthorization: function(authorization) {
+    if (authorization == null) return null;
+
+    const parts = authorization.trim().split(/\s+/);
+
+    if (parts.length !== 2 || parts[0] !== 'Bearer') {
+        return null;
+    }
+
+    return parts[1];
+},
+
     getUserId : function(authorization) {
         let userId = -1;
         const token = module.exports.parseAuthorization(authorization);

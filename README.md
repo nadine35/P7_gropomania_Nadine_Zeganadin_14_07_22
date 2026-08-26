@@ -1,101 +1,113 @@
-
 # Groupomania 🌐
 
 ## Sommaire
 
-- [Fonctionnalités](#fonctionnalités)
-  - [Gestion des utilisateurs](#-gestion-des-utilisateurs)
-  - [Publications](#-publications)
-  - [Commentaires](#-commentaires)
-  - [Likes](#️-likes)
-- [Technologies utilisées](#technologies-utilisées)
-  - [Frontend](#frontend)
-  - [Backend](#backend)
-  - [Base de données](#base-de-données)
-- [Installation du projet](#installation-du-projet)
-  - [Prérequis](#prérequis)
-  - [Cloner le projet](#cloner-le-projet)
-  - [Backend](#backend-1)
-  - [Frontend](#frontend-1)
-- [Utilisation](#utilisation)
-- [Production](#production)
-- [Tests](#tests)
-- [Structure du projet](#structure-du-projet)
-- [API](#api)
-- [Sécurité](#sécurité)
-- [Contexte et évolution du projet](#contexte-et-évolution-du-projet)
-- [Perspectives d'évolution](#perspectives-dévolution)
+* [Fonctionnalités](#fonctionnalités)
+
+  * [Gestion des utilisateurs](#-gestion-des-utilisateurs)
+  * [Publications](#-publications)
+  * [Commentaires](#-commentaires)
+  * [Likes](#️-likes)
+  * [Familles](#-familles)
+* [Technologies utilisées](#technologies-utilisées)
+
+  * [Frontend](#frontend)
+  * [Backend](#backend)
+  * [Base de données](#base-de-données)
+* [Installation du projet](#installation-du-projet)
+
+  * [Prérequis](#prérequis)
+  * [Cloner le projet](#cloner-le-projet)
+  * [Backend](#backend-1)
+  * [Frontend](#frontend-1)
+* [Utilisation](#utilisation)
+* [Production](#production)
+* [Tests](#tests)
+* [Structure du projet](#structure-du-projet)
+* [API](#api)
+* [Sécurité](#sécurité)
+* [Contexte et évolution du projet](#contexte-et-évolution-du-projet)
+* [Perspectives d'évolution](#perspectives-dévolution)
 
 Application web de type réseau social développée dans le cadre de ma formation de Développeuse Web.
 
 Le projet est composé de :
 
-- un frontend développé avec React ;
-- un backend développé avec Node.js et Express ;
-- une base de données MongoDB.
+* un frontend développé avec React ;
+* un backend développé avec Node.js et Express ;
+* une base de données MongoDB.
 
 ## Fonctionnalités
 
 ### 👤 Gestion des utilisateurs
 
-- Inscription
-- Connexion
-- Validation des informations utilisateur
-- Hashage des mots de passe avec bcrypt
-- Authentification avec JWT
-- Consultation des informations utilisateur
-- Modification du profil
-- Modification de la photo de profil
-- Suppression d'un compte
+* Inscription
+* Connexion
+* Validation des informations utilisateur
+* Hashage des mots de passe avec bcrypt
+* Authentification avec JWT
+* Consultation des informations utilisateur
+* Modification du profil
+* Modification de la photo de profil
+* Suppression d'un compte
 
 ### 📝 Publications
 
-- Création de publications
-- Consultation des publications
-- Modification des publications
-- Suppression des publications
-- Ajout d'images aux publications
+* Création de publications
+* Consultation des publications
+* Modification des publications
+* Suppression des publications
+* Ajout d'images aux publications
 
 ### 💬 Commentaires
 
-- Création de commentaires
-- Modification de commentaires
-- Suppression de commentaires
+* Création de commentaires
+* Modification de commentaires
+* Suppression de commentaires
 
 ### ❤️ Likes
 
-- Ajouter un like à une publication
-- Retirer un like
-- Association des likes entre utilisateurs et publications
+* Ajouter un like à une publication
+* Retirer un like
+* Association des likes entre utilisateurs et publications
+
+### 👨‍👩‍👧‍👦 Familles
+
+* Création d'une famille
+* Association d'un utilisateur à une famille
+* Consultation de sa famille
+* Consultation des membres de sa famille
+* Ajout d'un membre à une famille
+* Association des membres à une famille
 
 ## Technologies utilisées
 
 ### Frontend
 
-- React 18
-- React Router
-- Redux
-- Redux Toolkit
-- Redux Thunk
-- Axios
-- Sass
-- Font Awesome
-- React Testing Library
+* React 18
+* React Router
+* Redux
+* Redux Toolkit
+* Redux Thunk
+* Axios
+* Sass
+* Font Awesome
+* React Testing Library
 
 ### Backend
 
-- Node.js
-- Express
-- JavaScript
-- Multer
-- dotenv
-- bcrypt
-- JSON Web Token (JWT)
+* Node.js
+* Express
+* JavaScript
+* Multer
+* dotenv
+* bcrypt
+* JSON Web Token (JWT)
 
 ### Base de données
 
-- MongoDB
-- Mongoose
+* MongoDB
+* Mongoose
 
 ---
 
@@ -105,10 +117,10 @@ Le projet est composé de :
 
 Avant de commencer, installer :
 
-- Node.js
-- npm
-- MongoDB ou un compte MongoDB Atlas
-- Git
+* Node.js
+* npm
+* MongoDB ou un compte MongoDB Atlas
+* Git
 
 ## Cloner le projet
 
@@ -294,9 +306,13 @@ P7_gropomania_Nadine_Zeganadin_14_07_22/
 │
 ├── back/
 │   ├── controllers/
+│   │   └── family.js
 │   ├── middleware/
 │   ├── models/
+│   │   ├── User.js
+│   │   └── Family.js
 │   ├── routes/
+│   │   └── family.js
 │   ├── images/
 │   ├── app.js
 │   ├── server.js
@@ -305,6 +321,11 @@ P7_gropomania_Nadine_Zeganadin_14_07_22/
 ├── front/
 │   ├── public/
 │   ├── src/
+│   │   ├── pages/
+│   │   │   └── Family.js
+│   │   └── styles/
+│   │       └── pages/
+│   │           └── family.scss
 │   └── package.json
 │
 ├── .gitignore
@@ -332,6 +353,26 @@ Les routes liées aux publications sont accessibles sous :
 /api/post
 ```
 
+Les routes liées aux familles sont accessibles sous :
+
+```text
+/api/family
+```
+
+Routes disponibles :
+
+```text
+POST   /api/family
+GET    /api/family
+GET    /api/family/members
+```
+
+Ces routes permettent notamment de :
+
+* créer une famille ;
+* récupérer la famille de l'utilisateur connecté ;
+* récupérer les membres de sa famille.
+
 Les images sont servies depuis :
 
 ```text
@@ -342,11 +383,12 @@ Les images sont servies depuis :
 
 # Sécurité
 
-- Les mots de passe des utilisateurs sont hashés avec bcrypt.
-- L'authentification est gérée avec des tokens JWT.
-- Les identifiants MongoDB sont stockés dans des variables d'environnement.
-- La clé secrète JWT est stockée dans une variable d'environnement.
-- Les fichiers `.env` sont exclus du dépôt Git grâce au `.gitignore`.
+* Les mots de passe des utilisateurs sont hashés avec bcrypt.
+* L'authentification est gérée avec des tokens JWT.
+* Les identifiants MongoDB sont stockés dans des variables d'environnement.
+* La clé secrète JWT est stockée dans une variable d'environnement.
+* Les fichiers `.env` sont exclus du dépôt Git grâce au `.gitignore`.
+* Les routes nécessitant une authentification utilisent le token JWT.
 
 ---
 
@@ -358,42 +400,40 @@ En 2026, j'ai choisi de reprendre et de remanier l'ensemble du projet afin de le
 
 J'ai notamment travaillé sur :
 
-- la remise en fonctionnement du backend et du frontend ;
-- la reconnexion et la configuration de MongoDB Atlas ;
-- la correction et l'amélioration de l'inscription et de la connexion ;
-- la gestion de l'authentification avec JWT ;
-- la sécurisation des mots de passe avec bcrypt ;
-- la gestion et la validation des données utilisateur ;
-- la gestion de l'upload et de la modification des photos de profil ;
-- la gestion des images avec Multer ;
-- la communication entre le frontend React et l'API Node.js/Express ;
-- la correction de différents problèmes liés à l'ancienne version du projet ;
-- la mise à jour de la documentation du projet ;
-- la mise en place d'un `.gitignore` adapté afin de protéger les fichiers contenant des informations sensibles.
+* la remise en fonctionnement du backend et du frontend ;
+* la reconnexion et la configuration de MongoDB Atlas ;
+* la correction et l'amélioration de l'inscription et de la connexion ;
+* la gestion de l'authentification avec JWT ;
+* la sécurisation des mots de passe avec bcrypt ;
+* la gestion et la validation des données utilisateur ;
+* la gestion de l'upload et de la modification des photos de profil ;
+* la gestion des images avec Multer ;
+* la communication entre le frontend React et l'API Node.js/Express ;
+* la création d'une fonctionnalité de gestion des familles ;
+* l'association des utilisateurs à une famille ;
+* l'affichage de la famille et de ses membres dans l'application React ;
+* l'ajout de membres à une famille depuis l'application ;
+* la correction de différents problèmes liés à l'ancienne version du projet ;
+* la mise à jour de la documentation du projet ;
+* la mise en place d'un `.gitignore` adapté afin de protéger les fichiers contenant des informations sensibles.
 
 Cette reprise m'a permis de consolider mes connaissances en React, Redux, Node.js, Express, MongoDB, API REST, authentification et gestion des fichiers.
 
 Le projet constitue aujourd'hui une version remise à jour d'un travail réalisé en 2022 et témoigne de mon évolution dans le développement web fullstack.
 
-## Perspectives d'évolution
+---
+
+# Perspectives d'évolution
 
 Je souhaite poursuivre le développement de ce projet en le faisant évoluer progressivement vers une application dédiée à la conservation et à la transmission de la mémoire familiale.
 
 Les futures évolutions pourront notamment inclure :
 
-- la création d'un arbre généalogique ;
-- la gestion d'albums photos ;
-- une chronologie des événements familiaux ;
-- la rédaction et le partage de récits et d'anecdotes ;
-- la gestion des relations entre les membres d'une famille ;
-- la gestion des droits d'accès aux informations.
+* la création d'un arbre généalogique ;
+* la gestion d'albums photos ;
+* une chronologie des événements familiaux ;
+* la rédaction et le partage de récits et d'anecdotes ;
+* la gestion des relations entre les membres d'une famille ;
+* la gestion avancée des droits d'accès aux informations familiales.
 
 Ces fonctionnalités constituent une feuille de route pour les prochaines évolutions du projet.
-
-
-
-
-
-
-
-

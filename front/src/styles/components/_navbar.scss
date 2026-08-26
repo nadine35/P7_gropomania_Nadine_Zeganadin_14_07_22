@@ -1,11 +1,15 @@
 nav {
   position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 45px;
   border-radius: 6px;
   box-shadow: 18px 1px 0px #61DBFB, 22px 4px 0px 0px $shadow;
   z-index: 10;
-  top: 0;
+
+  // Police de toute la Navbar
+  font-family: "lato-light-2";
 
   @media screen and (max-width: 1251px) {
     padding: 0 20px;
@@ -13,11 +17,11 @@ nav {
 
   &::after {
     content: "";
-    height: 45px;
-    width: 110%;
-    left: -20px;
-    top:0;
     position: absolute;
+    top: 0;
+    left: -20px;
+    width: 110%;
+    height: 45px;
     backdrop-filter: blur(3px);
     background: rgba(255, 255, 255, 0.86);
     z-index: -8;
@@ -25,66 +29,151 @@ nav {
 
   .nav-container {
     display: flex;
+    align-items: center;
+    justify-content: space-between;
+
     width: 100%;
     max-width: 1600px;
-    margin: 0 auto;
-    justify-content: space-between;
     height: 45px;
-    align-items: center;
-    
+    margin: 0 auto;
+
     .logo {
       display: flex;
       align-items: center;
 
-      .logo-react{
+      a {
+        text-decoration: none;
+        color: inherit;
+        font-family: "lato-light-2";
+      }
+
+      h3 {
+        margin: 0;
+        transform: translate(15px, 2px);
+        font-size: 1.5rem;
+        font-family: "lato-light-2";
+        font-weight: normal;
+      }
+
+      .logo-react {
         display: flex;
         align-items: center;
         margin-left: 20px;
-      
 
-      }
-      
-      h3 {
-        transform: translate(15px, 2px);
-        font-size: 1.5rem;
-        font-family: 'lato-light-2';
-      }
-      img {
-        height: 26px;
-        width: 26px;
+        img {
+          width: 26px;
+          height: 26px;
+          object-fit: contain;
+        }
       }
     }
-    
+
+    // MENU
     ul {
       display: flex;
       align-items: center;
-      justify-content: center;
-      width: 35%;
-      justify-content: space-between;
-      font-size: 1.2rem;
-      
+      justify-content: flex-end;
+
+      width: auto;
+      margin: 0;
+      padding: 0;
+
+      gap: 30px;
+      font-size: 1.1rem;
+      font-family: "lato-light-2";
+
+      li {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  font-family: "lato-light-2";
+
+  a {
+    color: inherit;
+    text-decoration: none;
+    font-family: "lato-light-2";
+    transition: opacity 0.2s ease;
+  }
+
+  img {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    object-fit: contain;
+  }
+}
+
+      // MA FAMILLE
+      .family-link {
+        font-family: "lato-light-2";
+        font-size: 1.1rem;
+        font-weight: normal;
+        white-space: nowrap;
+      }
+
+      // BIENVENUE
       .welcome {
         transform: translateY(2px);
 
-        @media screen and (max-width: 590px) {
+        h5 {
+          margin: 0;
+          font-family: "lato-light-2";
+          font-size: 1rem;
+          font-weight: normal;
+          white-space: nowrap;
+        }
+
+        @media screen and (max-width: 700px) {
           display: none;
         }
-        
-        h5 {
-          font-family: 'lato-light-2';
+      }
+
+      // DECONNEXION
+      // .logout {
+      //   font-family: "lato-light-2";
+
+      //   * {
+      //     font-family: "lato-light-2";
+      //   }
+      // }
+
+      // ICONES
+      li img {
+        width: 24px;
+        height: 24px;
+        cursor: pointer;
+        object-fit: contain;
+      }
+    }
+  }
+
+  // PETITS ECRANS
+  @media screen and (max-width: 590px) {
+    padding: 0 10px;
+
+    .nav-container {
+      .logo {
+        h3 {
+          font-size: 1.2rem;
+          transform: translate(5px, 2px);
+        }
+
+        .logo-react {
+          margin-left: 10px;
+
+          img {
+            width: 22px;
+            height: 22px;
+          }
         }
       }
-      
-      li {
-        
-        img {
-          height: 24px;
-          width: 24px;
-          cursor: pointer;
-          display: grid;
-          align-items: center;
-          justify-items: center;
-          height: 100%;
+
+      ul {
+        gap: 15px;
+        font-size: 1rem;
+
+        .family-link {
+          font-size: 0.95rem;
         }
       }
     }

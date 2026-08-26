@@ -1,18 +1,22 @@
 import React from 'react';
-import { BrowserRouter, Route, Routes} from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Home from '../pages/Home';
 import Profil from '../pages/Profil';
+import Family from '../pages/Family';
 
 const index = () => {
   return (
     <BrowserRouter>
-    <Navbar />
-        <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/profil" element={<Profil />} />
-            <Route path="*" element={<Home />} />
-        </Routes>
+      <Navbar />
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/profil" element={<Profil />} />
+        <Route path="/family" element={<Family />} />
+        <Route path="*" element={<Home />} />
+      </Routes>
+
     </BrowserRouter>
   );
 };

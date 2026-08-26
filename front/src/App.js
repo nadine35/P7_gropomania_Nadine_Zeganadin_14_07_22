@@ -12,14 +12,20 @@ const App = () => {
   const [uid, setUid] = useState(null);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    const loggedInUser = localStorage.getItem("user");
-    if (loggedInUser) {
-      const foundUser = JSON.parse(loggedInUser);
-      setUid(foundUser.userId);
-    }
-    if (uid) dispatch(getUser(uid));
-  }, [uid, dispatch]);
+ useEffect(() => {
+  const loggedInUser = localStorage.getItem("user");
+
+  if (loggedInUser) {
+    const foundUser = JSON.parse(loggedInUser);
+    setUid(foundUser.userId);
+  }
+}, []);
+
+useEffect(() => {
+  if (uid) {
+    dispatch(getUser(uid));
+  }
+}, [uid, dispatch]);
 
  return (
   <UidContext.Provider value={uid}>

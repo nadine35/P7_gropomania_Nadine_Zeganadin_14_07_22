@@ -1,0 +1,91 @@
+.family-page {
+  width: 100%;
+  max-width: 1000px;
+  margin: 75px auto 30px;
+  padding: 0 20px;
+
+  .family-header {
+    margin-bottom: 20px;
+
+    h1 {
+      color: $color-3;
+      font-weight: normal;
+      margin-bottom: 5px;
+    }
+
+    p {
+      font-size: 1.1rem;
+    }
+  }
+
+  .family-card,
+  .family-members {
+    border: 2px solid $color-2;
+    border-radius: 20px;
+    background: $color-4;
+    padding: 25px 30px;
+    margin-bottom: 20px;
+    box-shadow: 2px 2px 2px rgba(51, 51, 51, 0.12);
+  }
+
+  .family-card {
+    h2 {
+      color: $color-1;
+      font-weight: normal;
+      margin-bottom: 8px;
+    }
+  }
+
+  .members-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+
+    h2 {
+      font-weight: normal;
+    }
+  }
+
+  .add-member-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+
+    input {
+      padding: 10px 15px;
+    }
+  }
+
+  .member {
+    border: 1px solid $color-2;
+    border-radius: 20px 20px 20px 6px;
+    padding: 15px 20px;
+    margin-bottom: 10px;
+
+    h3 {
+      font-weight: normal;
+      color: $color-3;
+    }
+  }
+
+  @media screen and (max-width: 590px) {
+    width: 95%;
+    padding: 0;
+
+    .members-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 15px;
+    }
+
+    .add-member-form {
+      flex-direction: column;
+
+      input,
+      button {
+        width: 100%;
+      }
+    }
+  }
+}

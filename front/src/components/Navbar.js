@@ -6,46 +6,66 @@ import Logout from './Log/Logout';
 
 const Navbar = () => {
     const uid = useContext(UidContext);
-    const userData = useSelector ((state) => state.userReducer);
+    const userData = useSelector((state) => state.userReducer);
 
+    return (
+        <nav>
+            <div className="nav-container">
 
-  return (
-    <nav>
-        <div className='nav-container'>
-            <div className='logo'>
-                <NavLink to ="/">
-                    <div className='logo'>
-                        <h3>Groupomania</h3>
-                        <div className='logo-react'>
-                            <img src="./img/icons/2000px-React-icon.svg_.webp" alt="logo react"></img>
-                            
+                <div className="logo">
+                    <NavLink to="/">
+                        <div className="logo">
+                            <h3>Groupomania</h3>
+
+                            <div className="logo-react">
+                                <img
+                                    src="./img/icons/2000px-React-icon.svg_.webp"
+                                    alt="logo react"
+                                />
+                            </div>
                         </div>
-                    </div>
-                </NavLink>
+                    </NavLink>
+                </div>
+
+                {uid ? (
+                    <ul className="nav-links">
+
+                        <li>
+                            <NavLink
+                                className="family-link"
+                                to="/family"
+                            >
+                                Ma famille
+                            </NavLink>
+                        </li>
+
+                        <li className="welcome">
+                            <NavLink to="/profil">
+                                <h5>
+                                    Bienvenue {userData.pseudo}
+                                </h5>
+                            </NavLink>
+                        </li>
+
+                        <Logout />
+
+                    </ul>
+                ) : (
+                    <ul>
+                        <li>
+                            <NavLink to="/profil">
+                                <img
+                                    src="./img/icons/login.svg"
+                                    alt="login"
+                                />
+                            </NavLink>
+                        </li>
+                    </ul>
+                )}
+
             </div>
-            {uid ? (
-                <ul>
-                    <li></li>
-                    <li className='welcome'>
-                        <NavLink to ="/profil">
-                            <h5>Bienvenue {userData.pseudo}</h5>
-                        </NavLink>
-                    </li>
-                    <Logout />
-                </ul>
-            ) : (
-                <ul>
-                    <li></li>
-                    <li>
-                        <NavLink to="/profil">
-                            <img src="./img/icons/login.svg" alt="login" />
-                        </NavLink>
-                    </li>
-                </ul>
-            )}
-        </div>
-    </nav>
-  );
+        </nav>
+    );
 };
 
 export default Navbar;

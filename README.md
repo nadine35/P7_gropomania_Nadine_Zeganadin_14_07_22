@@ -9,6 +9,7 @@
   * [Commentaires](#-commentaires)
   * [Likes](#️-likes)
   * [Familles](#-familles)
+  * [Livre familial](#-livre-familial)
 * [Technologies utilisées](#technologies-utilisées)
 
   * [Frontend](#frontend)
@@ -23,7 +24,6 @@
 * [Utilisation](#utilisation)
 * [Production](#production)
 * [Tests](#tests)
-* [Structure du projet](#structure-du-projet)
 * [API](#api)
 * [Sécurité](#sécurité)
 * [Contexte et évolution du projet](#contexte-et-évolution-du-projet)
@@ -79,6 +79,17 @@ Le projet est composé de :
 * Consultation des membres de sa famille
 * Ajout d'un membre à une famille
 * Association des membres à une famille
+  
+ ## 📖 Livre familial
+
+- Création d'un livre familial
+- Sommaire des chapitres
+- Navigation entre les chapitres
+- Présentation des récits familiaux sous forme de chapitres
+- Chronologie des événements familiaux
+- Préparation d'un espace pour les contributions de la famille
+
+
 
 ## Technologies utilisées
 
@@ -295,42 +306,6 @@ Les tests peuvent être lancés avec :
 
 ```bash
 npm test
-```
-
----
-
-# Structure du projet
-
-```text
-P7_gropomania_Nadine_Zeganadin_14_07_22/
-│
-├── back/
-│   ├── controllers/
-│   │   └── family.js
-│   ├── middleware/
-│   ├── models/
-│   │   ├── User.js
-│   │   └── Family.js
-│   ├── routes/
-│   │   └── family.js
-│   ├── images/
-│   ├── app.js
-│   ├── server.js
-│   └── package.json
-│
-├── front/
-│   ├── public/
-│   ├── src/
-│   │   ├── pages/
-│   │   │   └── Family.js
-│   │   └── styles/
-│   │       └── pages/
-│   │           └── family.scss
-│   └── package.json
-│
-├── .gitignore
-└── README.md
-```
 
 ---
 

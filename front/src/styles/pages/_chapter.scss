@@ -1,0 +1,231 @@
+.chapter-page {
+  max-width: 1000px;
+  margin: 80px auto 50px;
+  padding: 0 20px;
+
+  // =========================
+  // HEADER DU CHAPITRE
+  // =========================
+
+  .chapter-header {
+    background: $color-4;
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    margin-bottom: 25px;
+
+    .chapter-number {
+      color: $color-1;
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+
+    h1 {
+      color: $color-3;
+      margin: 10px 0;
+    }
+
+    p {
+      font-size: 1.1rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+  }
+
+  // =========================
+  // CONTENU DU CHAPITRE
+  // =========================
+
+  .chapter-content {
+    display: grid;
+    gap: 25px;
+  }
+
+  // =========================
+  // HISTOIRE FAMILIALE
+  // =========================
+
+  .family-contribution {
+    background: $color-4;
+    border-radius: 20px;
+    border: 2px solid $color-2;
+    padding: 35px;
+
+    @media screen and (max-width: 590px) {
+      padding: 25px 20px;
+    }
+
+    .contribution-header {
+      border-bottom: 2px solid $color-2;
+      padding-bottom: 20px;
+      margin-bottom: 25px;
+
+      .contribution-label {
+        display: inline-block;
+        background: $color-2;
+        color: $color-1;
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-size: 0.95rem;
+      }
+
+      h2 {
+        color: $color-3;
+        margin: 12px 0 5px;
+        font-size: 1.8rem;
+      }
+
+      .contribution-date {
+        font-style: italic;
+        color: $color-3;
+        margin: 0;
+      }
+    }
+
+    // =========================
+    // TEXTE
+    // =========================
+
+    .contribution-body {
+
+      h3 {
+        color: $color-1;
+        margin: 25px 0 10px;
+      }
+
+      p {
+        font-size: 1.1rem;
+        margin-bottom: 12px;
+        line-height: 1.6;
+      }
+    }
+
+    // =========================
+    // CHRONOLOGIE
+    // =========================
+
+    .family-timeline {
+      margin: 30px 0;
+
+      .timeline-item {
+        display: grid;
+        grid-template-columns: 120px 1fr;
+        gap: 20px;
+        align-items: start;
+
+        padding: 15px 0;
+        border-bottom: 1px solid $color-2;
+
+        @media screen and (max-width: 590px) {
+          grid-template-columns: 1fr;
+          gap: 5px;
+        }
+
+        span {
+          color: $color-1;
+          font-weight: bold;
+        }
+
+        p {
+          margin: 0;
+        }
+      }
+    }
+
+    // =========================
+    // NOTE / INFORMATIONS
+    // =========================
+
+    .contribution-footer {
+      margin-top: 25px;
+      padding: 15px 20px;
+      background: $color-2;
+      border-radius: 20px 20px 6px 20px;
+
+      p {
+        margin: 0;
+        font-size: 0.95rem;
+        font-style: italic;
+      }
+    }
+  }
+
+  // =========================
+  // CONTRIBUTIONS DE LA FAMILLE
+  // =========================
+
+  .contributions-section {
+    background: $color-4;
+    border-radius: 20px;
+    padding: 30px;
+    border: 2px solid $color-2;
+    text-align: center;
+
+    h2 {
+      color: $color-3;
+      margin-bottom: 10px;
+    }
+
+    p {
+      margin-bottom: 20px;
+      font-size: 1.05rem;
+    }
+
+    .add-contribution {
+      background: $color-2;
+      color: $color-1;
+
+      &:hover {
+        background: $color-1;
+        color: $color-2;
+      }
+    }
+  }
+}
+  // =========================
+  // NAVIGATION DU LIVRE
+  // =========================
+
+  .chapter-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 100%;
+    margin: 35px 0 20px;
+    padding: 20px 0;
+
+    border-top: 2px solid $color-2;
+
+    a {
+      color: $color-3;
+      font-size: 1rem;
+      transition: 0.2s;
+
+      &:hover {
+        color: $color-1;
+        transform: translateY(-2px);
+      }
+    }
+
+    a:nth-child(2) {
+      background: $color-2;
+      color: $color-1;
+      padding: 8px 16px;
+      border-radius: 20px;
+
+      &:hover {
+        background: $color-1;
+        color: $color-2;
+      }
+    }
+
+    @media screen and (max-width: 590px) {
+      flex-direction: column;
+      gap: 15px;
+
+      a:nth-child(2) {
+        order: -1;
+      }
+    }
+  }

@@ -39,10 +39,22 @@ const Family = () => {
         );
 
         setMembers(membersResponse.data);
+      // } catch (err) {
+      //   console.error(err);
+      //   setError("Impossible de récupérer votre famille");
+      // }
+
+
       } catch (err) {
-        console.error(err);
-        setError("Impossible de récupérer votre famille");
-      }
+  console.error("ERREUR FAMILY :", err);
+  console.error("Réponse serveur :", err.response?.data);
+  console.error("Status :", err.response?.status);
+
+  setError(
+    err.response?.data?.error ||
+    "Impossible de récupérer votre famille"
+  );
+}
     };
 
     getFamily();
@@ -61,7 +73,7 @@ const Family = () => {
 
       <div className="family-header">
         <h1>Ma famille</h1>
-        <p>Bienvenue dans votre espace familial</p>
+        <p>Bienvenue dans votre famille </p>
       </div>
 
       <div className="family-card">

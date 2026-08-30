@@ -364,6 +364,7 @@ Les images sont servies depuis :
 * La clé secrète JWT est stockée dans une variable d'environnement.
 * Les fichiers `.env` sont exclus du dépôt Git grâce au `.gitignore`.
 * Les routes nécessitant une authentification utilisent le token JWT.
+* Les dépendances sont vérifiées régulièrement avec `npm audit` (0 vulnérabilité détectée).
 
 ---
 
@@ -372,6 +373,12 @@ Les images sont servies depuis :
 Ce projet a été initialement réalisé en 2022 dans le cadre de ma formation de Développeuse Web.
 
 En 2026, j'ai choisi de reprendre et de remanier l'ensemble du projet afin de le remettre en état de fonctionnement et de consolider mes compétences en développement fullstack.
+Depuis, j'ai développé un projet plus abouti techniquement, **Choral-Riff**
+(Java/Spring Boot, PostgreSQL, Docker, CI GitHub Actions) → [lien vers le repo].
+Ce second projet m'a permis de mesurer les limites de la stack MERN utilisée ici
+(pas de conteneurisation, Create React App aujourd'hui déprécié) — des choix que
+je ferais différemment aujourd'hui, mais que je conserve volontairement pour
+témoigner de mon point de départ.
 
 J'ai notamment travaillé sur :
 
